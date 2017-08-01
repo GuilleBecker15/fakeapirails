@@ -64,7 +64,6 @@ GEM
     erubi (1.6.1)
     execjs (2.7.0)
     ffi (1.9.18-x86-mingw32)
-    forgery (0.6.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     i18n (0.8.6)
@@ -73,6 +72,7 @@ GEM
       multi_json (>= 1.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    lorem_ipsum_amet (0.6.2)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
@@ -171,8 +171,8 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
-  forgery
   jbuilder (~> 2.5)
+  lorem_ipsum_amet
   pg (~> 0.20.0)
   puma (~> 3.7)
   rails (~> 5.1.2)

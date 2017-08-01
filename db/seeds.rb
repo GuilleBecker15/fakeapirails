@@ -6,54 +6,73 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-	
+
+	puts LoremIpsum.lorem_ipsum(words: 10)
+	puts "-------------------------------------------"
+	puts LoremIpsum.lorem_ipsum(10, format: :title_case)
+
 	@file = JSON.parse(File.read(Rails.root + "public/db.json"))
-	# @users = @file['users']
-	# @posts = @file['posts']
-	# @comments = @file['comments']
-	# @albums = @file['albums']
+	@users = @file['users']
+	@posts = @file['posts']
+	@comments = @file['comments']
+	@albums = @file['albums']
 	@photos = @file['photos']
+
 	url = []
 	thumb = []
 
-	@photos.each do |p|
-		# puts (p['url'].inspect[1..p['url'].length-2])
-		url.push(p['url'].inspect[1..p['url'].length-2])
-		thumb.push(p['thumbnailUrl'].inspect[1..p['url'].length-2])
-	end
+	# @photos.each do |p|
+	# 	# puts (p['url'].inspect[1..p['url'].length-2])
+	# 	url.push(p['url'].inspect[1..p['url'].length-2])
+	# 	thumb.push(p['thumbnailUrl'].inspect[1..p['url'].length-2])
+	# end
 
 
 	usersIds = []
 	postIds = []
 	
 	#  Create USER
-	(0..9).each do |i|
-		user = User.create( name: (Forgery('name').first_name), username: Forgery('internet').user_name, email: Forgery('email').address, pass: 'U2FsdGVkX18En4ayH8lYGrMqC79skJGPGwToiI+Vf9o=', address: Forgery('address').street_address+' '+Forgery('address').street_number, city: Forgery('address').city, phone: Forgery('address').phone, website: Forgery('internet').domain_name, company: Forgery('name').company_name)
+	@users.each do |i|
+		user = User.create( name: i['name'], username: i['username'], email: i['email'], pass: 'U2FsdGVkX18En4ayH8lYGrMqC79skJGPGwToiI+Vf9o=', address: i['address'], city: i['city'], phone: i['phone'], website: i['website'], company: i['company'])
 		puts user.inspect
 		usersIds.push(user.id)
 	end
 
 	puts usersIds.inspect
+	@posts.each do |i|
+		Post.create( title: i['title'], body: i['boby'], user: User.find(i['userId']))
+	end	
+	@comments.each do |i|
+		Comment.create( name:  i['name'], body: i['body'], post: Post.find(i['postId']), user: User.find(rand(1..10)))
+	end
+	@albums.each do |i|
+		Album.create( title: i['title'], user: User.find(i['userId']) )
+	end
+	@photos.each do |i|
+		Photo.create( title: i['title'], url: i['url'], thumbnailurl: i['thumbnailUrl'], album: Album.find(i['albumId']) )
+	end
 	# create Posts
-	usersIds.each do |i|
-		post = Post.create( title: Forgery('lorem_ipsum').title, body: Forgery('lorem_ipsum').paragraph, user: User.find(i))
+
+=begin	
+		usersIds.each do |i|
+		post = Post.create( title: LoremIpsum.lorem_ipsum(words: rand(4..10)), body: LoremIpsum.lorem_ipsum(words: rand(20..50)), user: User.find(i))
 		(0..4).each do |j|
-			Comment.create( name:  Forgery('lorem_ipsum').title, body: Forgery('lorem_ipsum').paragraph, post: post, user: User.find(usersIds.shuffle.first))
+			Comment.create( name:  LoremIpsum.lorem_ipsum(words: rand(4..10)), body: LoremIpsum.lorem_ipsum(words: rand(20..50)), post: post, user: User.find(usersIds.shuffle.first))
 		end
 		postIds.push(post.id)
 
 		albumIds = []
 		(0..2).each do |a|
-			album = Album.create( title: Forgery('lorem_ipsum').title, user: User.find(i) )
+			album = Album.create( title: LoremIpsum.lorem_ipsum(words: rand(4..10)), user: User.find(i) )
 			albumIds.push(album.id)
 		end
 
 		albumIds.each do |q|
 			(0..4).each do |w|
 				indexUrl = (0..url.length-1).to_a.shuffle.first
-				Photo.create( title: Forgery('lorem_ipsum').title, url: url[indexUrl].inspect, thumbnailurl: thumb[indexUrl].inspect, album: Album.find(q) )
+				Photo.create( title: LoremIpsum.lorem_ipsum(words: rand(4..10)), url: url[indexUrl].inspect, thumbnailurl: thumb[indexUrl].inspect, album: Album.find(q) )
 			end
 		end
 
 	end
-	
+=end
