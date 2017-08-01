@@ -61,6 +61,34 @@ class UsersController < ApplicationController
     end
   end
 
+  def dbs
+    # Rails.application.eager_load! # To load all models app/models/**/*.rb
+    # all_records = ActiveRecord::Base.descendants.map &:all
+    # all_records.to_json
+
+    # render json: all_records
+
+    @users = User.all
+    @posts = Post.all
+    @comments = Comment.all
+    @albums = Album.all
+    @photos = Photo.all
+
+    @photos.each do |p|
+      p['url'] = p['url'].gsub('"', '')
+      p['thumbnailurl'] = p['thumbnailurl'].gsub('"', '')
+
+    end
+
+    # puts @photos[3]['url']
+    # puts @photos[3]['url'].gsub('"', '\'')
+    # users = User.all.to_json
+    respond_to do |format|
+      format.html { redirect_to @user, notice: 'User was successfully created.' }
+      format.json { render json: {users: @users,posts: @posts,comments: @comments,albums: @albums,photos: @photos }, status: :ok }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

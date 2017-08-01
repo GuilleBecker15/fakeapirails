@@ -17,11 +17,11 @@
 	thumb = []
 
 	@photos.each do |p|
-		url.push(p['url'])
-		thumb.push(p['thumbnailUrl'])
+		# puts (p['url'].inspect[1..p['url'].length-2])
+		url.push(p['url'].inspect[1..p['url'].length-2])
+		thumb.push(p['thumbnailUrl'].inspect[1..p['url'].length-2])
 	end
 
-	
 
 	usersIds = []
 	postIds = []
@@ -56,5 +56,4 @@
 		end
 
 	end
-
-
+	
