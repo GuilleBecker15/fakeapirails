@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 #############################
 # gem 'forgery'
+gem 'sqlite3'
 
 # gem 'lorem_ipsum_amet'
 
