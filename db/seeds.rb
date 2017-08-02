@@ -33,7 +33,7 @@
 	
 	#  Create USER
 	@users.each do |i|
-		user = User.create( name: i['name'], username: i['username'], email: i['email'], pass: 'U2FsdGVkX18En4ayH8lYGrMqC79skJGPGwToiI+Vf9o=', address: i['address'], city: i['city'], phone: i['phone'], website: i['website'], company: i['company'])
+		user = User.create( name: i['name'], username: i['username'], email: i['email'], pass: 'U2FsdGVkX18En4ayH8lYGrMqC79skJGPGwToiI+Vf9o=', address: i['address']['street']+' '+i['address']['suite'], city: i['address']['city'], phone: i['phone'], website: i['website'], company: i['company']['name'])
 		puts user.inspect
 		usersIds.push(user.id)
 	end
