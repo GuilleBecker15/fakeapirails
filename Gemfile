@@ -32,7 +32,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 #############################
 # gem 'forgery'
-gem 'sqlite3'
+# gem 'sqlite3'
+gem 'pg', '~> 0.20.0'
 
 # gem 'lorem_ipsum_amet'
 
@@ -47,7 +48,8 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
-  gem 'sqlite3'
+  # gem 'sqlite3'
+  gem 'pg', '~> 0.20.0'
 end
 
 group :production do
