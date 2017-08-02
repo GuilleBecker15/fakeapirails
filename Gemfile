@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 #############################
 # gem 'forgery'
 
-gem 'lorem_ipsum_amet'
+# gem 'lorem_ipsum_amet'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

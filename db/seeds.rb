@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-	puts LoremIpsum.lorem_ipsum(words: 10)
-	puts "-------------------------------------------"
-	puts LoremIpsum.lorem_ipsum(10, format: :title_case)
+	# puts LoremIpsum.lorem_ipsum(words: 10)
+	# puts "-------------------------------------------"
+	# puts LoremIpsum.lorem_ipsum(10, format: :title_case)
 
 	@file = JSON.parse(File.read(Rails.root + "public/db.json"))
 	@users = @file['users']
